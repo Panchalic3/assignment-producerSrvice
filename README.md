@@ -65,7 +65,7 @@ src/main/java/com/assignment/producer/
 
 ### 1. Clone the repository
 
-git clone <your-repo-url>
+git clone https://github.com/Panchalic3/assignment-producerSrvice
 
 ### 2. Build the project
 
