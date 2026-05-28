@@ -18,7 +18,6 @@ message publishing.
 - PostgreSQL
 - Lombok
 - JUnit 5 & Mockito
-- JaCoCo (Code Coverage)
 
 ## 📂 Project Structure
 
@@ -39,6 +38,7 @@ src/main/java/com/assignment/producer/
 ### 1. Clone the repository
 
 git clone https://github.com/Panchalic3/assignment-producerSrvice
+
 cd assignment-producerSrvice
 
 ### 2. Build the project
@@ -57,7 +57,7 @@ mvn spring-boot:run
 
 **POST** `/api/ingest`
 
-#### ✅ Request Body
+#### ➤ Request Body
 
 ```json
 {
@@ -85,8 +85,7 @@ Message sent to Kafka
 - Request is validated using @Valid
 - Data is passed to service layer
 - Mapper enriches payload with:
-  eventId (UUID)
-  timestamp
+  eventId (UUID) and timestamp
 - Data is converted to JSON
 - Message is sent to Kafka topic
 
