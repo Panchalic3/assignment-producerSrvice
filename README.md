@@ -19,10 +19,10 @@ message publishing.
 - Lombok
 - JUnit 5 & Mockito
 
-## 📂 Project Structure
+## 📁 Project Structure
 
+```
 src/main/java/com/assignment/producer/
-│
 ├── controller
 ├── service
 ├── model
@@ -30,6 +30,7 @@ src/main/java/com/assignment/producer/
 ├── exception
 ├── config
 └── ProducerServiceApplication.java
+```
 
 ---
 
