@@ -35,10 +35,9 @@ src/main/java/com/assignment/producer/
 
 ## ⚙️ Setup & Installation
 
-### 1. Clone the repository
+## Clone the Repository
 
 git clone https://github.com/Panchalic3/assignment-producerSrvice
-
 cd assignment-producerSrvice
 
 ### 2. Build the project
