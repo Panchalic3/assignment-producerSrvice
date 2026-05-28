@@ -3,7 +3,7 @@
 ## 📌 Overview
 
 Kafka Producer Service is a Spring Boot application that exposes REST APIs to ingest event data and publish it to an
-Apache Kafka topic. It validates incoming requests, enriches them with system-generated fields, and ensures reliable
+Apache Kafka topic. It enriches incoming requests with system-generated fields, and ensures reliable
 message publishing.
 
 ---
@@ -13,9 +13,7 @@ message publishing.
 - Java 21
 - Spring Boot 3.x
 - Spring Web
-- Spring Data JPA
 - Apache Kafka
-- PostgreSQL
 - Lombok
 - JUnit 5 & Mockito
 
@@ -37,10 +35,10 @@ src/main/java/com/assignment/producer/
 ## ⚙️ Setup & Installation
 
 ## Clone the Repository
-
+```
 git clone https://github.com/Panchalic3/assignment-producerSrvice
 cd assignment-producerSrvice
-
+```
 ### 2. Build the project
 
 mvn clean install
@@ -67,9 +65,9 @@ mvn spring-boot:run
 ```
 
 #### ✅ Success Response
-
+```
 Message sent to Kafka
-
+```
 #### ❌ Validation Errors
 
 ```json
@@ -100,6 +98,7 @@ mvn test
 - Service layer (Mockito)
 - Mapper (Unit Test)
 - Global Exception Handling
+- Util
 
 ## 👩‍💻 Author
 **Panchali**
