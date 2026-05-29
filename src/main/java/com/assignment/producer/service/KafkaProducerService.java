@@ -34,7 +34,8 @@ public class KafkaProducerService {
      * Converts payload to JSON and publishes it to Kafka.
      *
      * @param payloadParam event data to send
-     * @throws RuntimeException if message publishing fails
+     * In case of Kafka failure, persists the event to table pending_events for retry processing.
+     *  Ensures no data loss by enabling fallback and eventual delivery.
      */
     public void sendMessage(EventPayload payloadParam) throws JsonProcessingException {
         EventPayload event = eventMapper.mapToEvent(payloadParam);

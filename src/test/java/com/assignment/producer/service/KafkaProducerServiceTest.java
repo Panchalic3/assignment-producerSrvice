@@ -1,6 +1,8 @@
 package com.assignment.producer.service;
 
 import com.assignment.producer.model.EventPayload;
+import com.assignment.producer.model.PendingEvent;
+import com.assignment.producer.repo.PendingEventRepository;
 import com.assignment.producer.util.EventMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -26,7 +28,8 @@ class KafkaProducerServiceTest {
     private EventMapper eventMapper;
     @InjectMocks
     private KafkaProducerService kafkaProducerService;
-
+    @Mock
+    private PendingEventRepository repository;
     private EventPayload inputPayload;
     private EventPayload mappedEvent;
 
@@ -51,18 +54,16 @@ class KafkaProducerServiceTest {
     }
 
     @Test
-    void shouldThrowException_whenJsonConversionFails() throws Exception {
+    void shouldSaveToDB_whenKafkaFails() throws Exception {
 
         when(eventMapper.mapToEvent(inputPayload)).thenReturn(mappedEvent);
+        when(objectMapper.writeValueAsString(mappedEvent)).thenReturn("json");
 
-        when(objectMapper.writeValueAsString(mappedEvent))
-                .thenThrow(new RuntimeException("JSON error"));
+        when(kafkaTemplate.send(anyString(), anyString()))
+                .thenThrow(new RuntimeException("Kafka down"));
 
-        RuntimeException exception = Assertions.assertThrows(
-                RuntimeException.class,
-                () -> kafkaProducerService.sendMessage(inputPayload)
-        );
+        kafkaProducerService.sendMessage(inputPayload);
 
-        Assertions.assertEquals(KAFKA_SEND_ERROR, exception.getMessage());
+        verify(repository, times(1)).save(any(PendingEvent.class));
     }
 }

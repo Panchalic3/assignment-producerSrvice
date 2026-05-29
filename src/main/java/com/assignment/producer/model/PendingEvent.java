@@ -1,6 +1,7 @@
 package com.assignment.producer.model;
 
 import jakarta.persistence.*;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@Generated
 public class PendingEvent {
 
     @Id

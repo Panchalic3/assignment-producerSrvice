@@ -31,6 +31,11 @@ public class KafkaProducerConfig {
      * KEY_SERIALIZER_CLASS_CONFIG - Serializes key as String
      * VALUE_SERIALIZER_CLASS_CONFIG - Serializes value as JSON String
      *
+     *  * MAX_BLOCK_MS_CONFIG - Maximum time (ms) producer will block before throwing exception 5 sec
+     *  * REQUEST_TIMEOUT_MS_CONFIG - Time (ms) to wait for broker response 5 sec
+     *  * DELIVERY_TIMEOUT_MS_CONFIG - Total time (ms) to deliver message including retries 10
+     *  *
+     *
      * @return ProducerFactory<String, String>
      */
     @Bean
@@ -42,9 +47,9 @@ public class KafkaProducerConfig {
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
-        configProps.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 5000);          // fail fast (5 sec)
-        configProps.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, 5000);    // request timeout
-        configProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 10000);  // total retry window
+        configProps.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 5000);
+        configProps.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, 5000);
+        configProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 10000);
 
         return new DefaultKafkaProducerFactory<>(configProps);
     }
