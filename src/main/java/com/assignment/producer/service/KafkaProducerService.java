@@ -35,8 +35,11 @@ public class KafkaProducerService {
         try {
             String message = this.objectMapper.writeValueAsString(event);
             this.kafkaTemplate.send(TOPIC, message);
+            log.info(MSG_SUCCESSFULLY_SENT_TO_KAFKA_LOG, event.getEventId());
+
         }
         catch (Exception exception) {
+            log.error(KAFKA_SEND_ERROR_LOG, event.getEventId(), exception.getClass());
             throw new RuntimeException(KAFKA_SEND_ERROR, exception);
         }
     }
