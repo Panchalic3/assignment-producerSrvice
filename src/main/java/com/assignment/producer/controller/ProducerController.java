@@ -2,6 +2,7 @@ package com.assignment.producer.controller;
 
 import com.assignment.producer.model.EventPayload;
 import com.assignment.producer.service.KafkaProducerService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class ProducerController {
      * @return success response
      */
     @PostMapping("/ingest")
-    public ResponseEntity<String> ingest(@RequestBody @Valid EventPayload payloadParam) {
+    public ResponseEntity<String> ingest(@RequestBody @Valid EventPayload payloadParam) throws JsonProcessingException {
         this.kafkaProducerService.sendMessage(payloadParam);
         return ResponseEntity.ok(MSG_SENT_TO_KAFKA);
     }

@@ -42,6 +42,10 @@ public class KafkaProducerConfig {
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
+        configProps.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 5000);          // fail fast (5 sec)
+        configProps.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, 5000);    // request timeout
+        configProps.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 10000);  // total retry window
+
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 

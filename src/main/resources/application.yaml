@@ -1,3 +1,13 @@
 spring:
   application:
     name: producer-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/assignment
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
