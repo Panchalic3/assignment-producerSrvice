@@ -1,6 +1,7 @@
 package com.assignment.producer.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import com.assignment.producer.model.PendingEvent;
@@ -17,9 +18,8 @@ import static com.assignment.producer.util.Constants.FOUND_EVENT_LOG;
 
 @Component
 @AllArgsConstructor
+@Slf4j
 public class KafkaRetryScheduler {
-
-    private static final Logger log = LoggerFactory.getLogger(KafkaRetryScheduler.class);
 
     private final PendingEventRepository repository;
     private final KafkaTemplate<String, String> kafkaTemplate;
